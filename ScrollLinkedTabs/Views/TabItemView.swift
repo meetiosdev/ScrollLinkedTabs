@@ -68,7 +68,7 @@ struct TabItemView: View {
             activeHighlightColor
                 .frame(height: 3)
                 .clipShape(.capsule)
-                .matchedGeometryEffect(id: "ACTIVE_COMMUNITY_TAB", in: animationNamespace)
+                .matchedGeometryEffect(id: "ACTIVE_TOPIC_TAB", in: animationNamespace)
         }
     }
 
