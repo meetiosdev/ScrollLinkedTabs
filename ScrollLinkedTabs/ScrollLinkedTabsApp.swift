@@ -12,6 +12,7 @@ struct ScrollLinkedTabsApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView(viewModel: HomeViewModel())
+              //  .environment(\.layoutDirection, .rightToLeft)
         }
     }
 }

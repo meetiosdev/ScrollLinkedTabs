@@ -36,7 +36,7 @@ struct PostsFeedView: View {
                 
             }
         }
-        .contentMargins(.vertical, 48)
+        .contentMargins(.vertical, 56)
         .scrollIndicators(.hidden)
     }
     

@@ -28,7 +28,11 @@ struct TabsBarView: View {
                 if viewModel.topics.isEmpty && viewModel.isLoading {
                     loadingShimmer(count: 6)
                 } else {
-                    LazyHStack(spacing: 24) {
+                    // FIXME: Using HStack to ensure stable view identities for smooth matchedGeometryEffect animations.
+                    // LazyHStack is ideal for performance with large datasets but can break animations due to view reuse.
+                    // See commented-out LazyHStack below for a fix that prevents animation issues while keeping performance benefits.
+                    //LazyHStack(spacing: 24) {
+                    HStack(spacing: 24) {
                         ForEach(viewModel.topics, id: \ .id) { topic in
                             TabItemView(
                                 topic: topic,
@@ -38,10 +42,9 @@ struct TabsBarView: View {
                                 viewModel.selectTopic(topic)
                             }
                             .id(topic.id)
+                           // .environment(\.self, UUID())
                         }
                     }
-                   // .padding(.horizontal, 16)
-                   // .redacted(reason: viewModel.communities.isEmpty ? .placeholder : [])
                 }
                
             }
@@ -66,4 +69,9 @@ struct TabsBarView: View {
             }
         }
     }
+}
+
+#Preview {
+    TabsBarView(viewModel: HomeViewModel())
+        .padding()
 }
