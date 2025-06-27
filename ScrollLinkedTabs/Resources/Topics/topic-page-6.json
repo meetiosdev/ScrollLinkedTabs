@@ -1,0 +1,29 @@
+{
+  "title": "community-page-6",
+  "page_number": 6,
+  "page_size": 20,
+  "total_record_count": 1000,
+  "next_page": "https://static.staticsave.com/melpot/community-page-7.json",
+  "records": [
+    {"id": 101, "name": "ClassicCars", "color": "#A14B7B"},
+    {"id": 102, "name": "ElectricVehicles", "color": "#3B7FA1"},
+    {"id": 103, "name": "Motorcycles", "color": "#E8A13F"},
+    {"id": 104, "name": "Aviation", "color": "#7BA13B"},
+    {"id": 105, "name": "Sailing", "color": "#A13B7F"},
+    {"id": 106, "name": "Trains", "color": "#3FA1E8"},
+    {"id": 107, "name": "Amtrak", "color": "#A17B3B"},
+    {"id": 108, "name": "UrbanExploration", "color": "#7F3BA1"},
+    {"id": 109, "name": "Archaeology", "color": "#A13FA1"},
+    {"id": 110, "name": "Anthropology", "color": "#3BA17F"},
+    {"id": 111, "name": "Paleontology", "color": "#E83F7B"},
+    {"id": 112, "name": "Genealogy", "color": "#7BA13F"},
+    {"id": 113, "name": "TrueCrime", "color": "#A1E83F"},
+    {"id": 114, "name": "UnresolvedMysteries", "color": "#3F7BA1"},
+    {"id": 115, "name": "Paranormal", "color": "#A13B3F"},
+    {"id": 116, "name": "UFOs", "color": "#3FA17B"},
+    {"id": 117, "name": "Conspiracy", "color": "#7BA13B"},
+    {"id": 118, "name": "Preppers", "color": "#A1A13B"},
+    {"id": 119, "name": "Homesteading", "color": "#3BA1A1"},
+    {"id": 120, "name": "Permaculture", "color": "#A13BA1"}
+  ]
+}

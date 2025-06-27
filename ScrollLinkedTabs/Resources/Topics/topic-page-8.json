@@ -1,0 +1,29 @@
+{
+  "title": "community-page-8",
+  "page_number": 8,
+  "page_size": 20,
+  "total_record_count": 1000,
+  "next_page": "https://static.staticsave.com/melpot/community-page-9.json",
+  "records": [
+    {"id": 141, "name": "Collectibles", "color": "#C15D9D"},
+    {"id": 142, "name": "ActionFigures", "color": "#5DC19D"},
+    {"id": 143, "name": "VinylRecords", "color": "#9DC15D"},
+    {"id": 144, "name": "CoinCollecting", "color": "#C19D5D"},
+    {"id": 145, "name": "StampCollecting", "color": "#5D9DC1"},
+    {"id": 146, "name": "Antiques", "color": "#9D5DC1"},
+    {"id": 147, "name": "VintageFashion", "color": "#C15D5D"},
+    {"id": 148, "name": "Sneakers", "color": "#5DC15D"},
+    {"id": 149, "name": "Watches", "color": "#C19D9D"},
+    {"id": 150, "name": "EDC", "color": "#9DC15D"},
+    {"id": 151, "name": "FountainPens", "color": "#5D9DC1"},
+    {"id": 152, "name": "MechanicalKeyboards", "color": "#C19D5D"},
+    {"id": 153, "name": "Flashlights", "color": "#9D5DC1"},
+    {"id": 154, "name": "Multitools", "color": "#C15D5D"},
+    {"id": 155, "name": "Drones", "color": "#5DC15D"},
+    {"id": 156, "name": "RCModels", "color": "#C19D9D"},
+    {"id": 157, "name": "ModelTrains", "color": "#9DC15D"},
+    {"id": 158, "name": "Gunpla", "color": "#5D9DC1"},
+    {"id": 159, "name": "MiniPainting", "color": "#C19D5D"},
+    {"id": 160, "name": "Puzzles", "color": "#9D5DC1"}
+  ]
+}
