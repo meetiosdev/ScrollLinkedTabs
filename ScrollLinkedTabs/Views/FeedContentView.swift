@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/// Displays content for selected community
+/// Displays content for selected Topiccommunity
 struct FeedContentView: View {
     @State private var viewModel: HomeViewModel
     init(viewModel: HomeViewModel) {
