@@ -1,16 +1,15 @@
 //
-//  PostCardView.swift
+//  PostView.swift
 //  ScrollLinkedTabs
 //
 //  Created by Swarajmeet Singh on 27/06/25.
 //
 
 
-
 import SwiftUI
 
 /// A view that displays a social media-style post card with user name, content, date, and likes.
-struct PostCardView: View {
+struct PostView: View {
     
     // MARK: - Input
     let post: Post

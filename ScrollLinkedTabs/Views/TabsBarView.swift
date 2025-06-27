@@ -1,12 +1,14 @@
+//
+//  TabsBarView.swift
+//  ScrollLinkedTabs
+//
+//  Created by Swarajmeet Singh on 27/06/25.
+//
+
+
 
 import SwiftUI
 
-// MARK: - CommunityTabsView
-
-/// A horizontally scrollable, animated tab bar for selecting communities.
-///
-/// This view fetches community data via `CommunityViewModel` and renders each as an interactive tab item.
-/// It handles infinite scrolling and scroll-to-selected behavior.
 struct TabsBarView: View {
 
     // MARK: - State & Dependencies

@@ -5,9 +5,9 @@
 //  Created by Swarajmeet Singh on 26/06/25.
 //
 
-
 import SwiftUI
 import Observation
+
 /// ViewModel responsible for managing feed data and navigation for the `HomeView`.
 @Observable
 final class HomeViewModel {
@@ -18,15 +18,15 @@ final class HomeViewModel {
 
     // MARK: - Feed State
 
-    private(set) var sections: [Topic] = []
-    private(set) var selectedSection: Topic?
+    private(set) var topics: [Topic] = []
+    private(set) var selectedTopic: Topic?
     private(set) var isLoading: Bool = false
     private var currentPage: Int = 0
     var selectedTabIndex: Int = 0
 
     // MARK: - UI State
 
-    var sectionBarHeight: CGFloat = 24
+    var topicsBarHeight: CGFloat = 24
 
     // MARK: - Init
 
@@ -37,25 +37,25 @@ final class HomeViewModel {
     // MARK: - Data Loading
 
     func initializeFeed() {
-        guard sections.isEmpty, !isLoading else { return }
+        guard topics.isEmpty, !isLoading else { return }
         Task { [weak self] in
-            await self?.loadMoreSections()
+            await self?.loadMoreTopics()
         }
     }
 
-    func loadMoreSections() async {
+    func loadMoreTopics() async {
         guard !isLoading else { return }
         isLoading = true
         defer { isLoading = false }
 
         do {
             let response = try await feedService.fetchLocalFeed(page: currentPage + 1)
-            sections.append(contentsOf: response.records)
+            topics.append(contentsOf: response.records)
             currentPage = response.pageNumber
 
-            // Auto-select first section if none selected
-            if selectedSection == nil, let first = sections.first {
-                selectSection(first)
+            // Auto-select first topic if none selected
+            if selectedTopic == nil, let first = topics.first {
+                selectTopic(first)
             }
 
         } catch {
@@ -63,35 +63,35 @@ final class HomeViewModel {
         }
     }
 
-    // MARK: - Section Selection
+    // MARK: - Topic Selection
 
-    func selectSection(_ section: Topic) {
-        guard let newIndex = sections.firstIndex(where: { $0.id == section.id }) else { return }
+    func selectTopic(_ topic: Topic) {
+        guard let newIndex = topics.firstIndex(where: { $0.id == topic.id }) else { return }
 
-        if let current = selectedSection,
-           let currentIndex = sections.firstIndex(where: { $0.id == current.id }) {
+        if let current = selectedTopic,
+           let currentIndex = topics.firstIndex(where: { $0.id == current.id }) {
             let diff = abs(currentIndex - newIndex)
             withAnimation(diff > 3 ? nil : .snappy) {
-                updateSelection(section, newIndex)
+                updateSelection(topic, newIndex)
             }
         } else {
-            updateSelection(section, newIndex)
+            updateSelection(topic, newIndex)
         }
     }
 
-    func isSectionSelected(_ section: Topic) -> Bool {
-        selectedSection?.id == section.id
+    func isTopicSelected(_ topic: Topic) -> Bool {
+        selectedTopic?.id == topic.id
     }
 
     func clearSelection() {
-        selectedSection = nil
+        selectedTopic = nil
         selectedTabIndex = 0
     }
 
     // MARK: - Helpers
 
-    private func updateSelection(_ section: Topic, _ index: Int) {
-        selectedSection = section
+    private func updateSelection(_ topic: Topic, _ index: Int) {
+        selectedTopic = topic
         selectedTabIndex = index
     }
 }

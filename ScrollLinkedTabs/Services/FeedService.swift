@@ -11,7 +11,7 @@ import Foundation
 final class FeedService: FeedServiceProtocol {
 
     func fetchLocalFeed(page: Int) async throws -> FeedResponse {
-        let fileName = "feed-page-\(page)" // Ensure files are named like feed-page-1.json
+        let fileName = "topic-page-\(page)" // Ensure files are named like feed-page-1.json
         print("📄 [Local Load] Fetching feed data from: \(fileName).json")
 
         // Try to locate the JSON file in the bundle

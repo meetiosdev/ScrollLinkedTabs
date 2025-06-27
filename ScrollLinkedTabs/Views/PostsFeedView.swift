@@ -1,3 +1,11 @@
+//
+//  PostsFeedView.swift
+//  ScrollLinkedTabs
+//
+//  Created by Swarajmeet Singh on 27/06/25.
+//
+
+
 import SwiftUI
 
 /// A scrollable feed view that displays either a list of post cards or placeholder colored rectangles.
@@ -6,10 +14,10 @@ struct PostsFeedView: View {
     
     // MARK: - Input
     
-    let community : Community
+    let topic : Topic
     
-    init(community: Community) {
-        self.community = community
+    init(topic: Topic) {
+        self.topic = topic
     }
     
     /// Placeholder generation bounds.
@@ -20,7 +28,7 @@ struct PostsFeedView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 16) {
-                if let posts = community.posts {
+                if let posts = topic.posts {
                     renderPostList(posts)
                 } else {
                     renderPlaceholderGrid()
@@ -39,9 +47,9 @@ struct PostsFeedView: View {
     @ViewBuilder
     private func renderPostList(_ posts: [Post]) -> some View {
         ForEach(posts) { post in
-            PostCardView(
+            PostView(
                 post: post,
-                backGroundColor: Color(hex: community.color)
+                backGroundColor: Color(hex: topic.color)
             )
         }
     }
@@ -54,11 +62,11 @@ struct PostsFeedView: View {
             let borderOpacity = 1.0 - fillOpacity
             
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(hex: community.color).opacity(fillOpacity))
+                .fill(Color(hex: topic.color).opacity(fillOpacity))
                 .frame(height: 84)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color(hex: community.color).opacity(borderOpacity), lineWidth: 1)
+                        .stroke(Color(hex: topic.color).opacity(borderOpacity), lineWidth: 1)
                 )
                 .overlay {
                     Text(String(format: "%.2f", fillOpacity))

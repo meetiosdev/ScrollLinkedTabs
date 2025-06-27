@@ -1,3 +1,11 @@
+//
+//  HomeView.swift
+//  ScrollLinkedTabs
+//
+//  Created by Swarajmeet Singh on 27/06/25.
+//
+
+
 import SwiftUI
 
 /// The main home screen view displaying content and a custom header.
@@ -12,18 +20,18 @@ struct HomeView: View {
     }
     
     var body: some View {
-        CommunityContentView(viewModel: viewModel)
+        FeedContentView(viewModel: viewModel)
             .overlay(alignment: .top) {
                 headerMaterialBackground
                     .frame(height: 96)
                     .overlay(alignment: .bottom) {
-                        CommunityTabsView(viewModel: viewModel)
+                        TabsBarView(viewModel: viewModel)
                             .frame(height: 24)
                     }
                     .ignoresSafeArea(edges: .top)
             }
             .task {
-                viewModel.initializeCommunities()
+                viewModel.initializeFeed()
             }
     }
     

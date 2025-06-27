@@ -11,7 +11,7 @@ import SwiftUI
 struct ScrollLinkedTabsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView(viewModel: HomeViewModel())
         }
     }
 }
