@@ -26,12 +26,16 @@ final class HomeViewModel {
 
     // MARK: - UI State
 
-    var topicsBarHeight: CGFloat = 24
+    var headerHeight: CGFloat = 0
+    let topicsBarHeight: CGFloat = 30
+    let navigationBarHeight: CGFloat = 44
+    private let headerPadding: CGFloat = 12
 
     // MARK: - Init
 
     init(feedService: FeedServiceProtocol = FeedService()) {
         self.feedService = feedService
+        headerHeight = SafeAreaManager.top + navigationBarHeight + topicsBarHeight + headerPadding
     }
 
     // MARK: - Data Loading

@@ -12,6 +12,10 @@ import SwiftUI
 /// - Displays actual posts if provided, otherwise renders a visual placeholder grid using a gradient color style.
 struct PostsFeedView: View {
     
+    private let topicsBarHeight: CGFloat = 30
+    private let navigationBarHeight: CGFloat = 44
+    private let headerPadding: CGFloat = 12
+    
     // MARK: - Input
     
     let topic : Topic
@@ -33,10 +37,9 @@ struct PostsFeedView: View {
                 } else {
                     renderPlaceholderGrid()
                 }
-                
             }
         }
-        .contentMargins(.vertical, 56)
+        .contentMargins(.vertical, navigationBarHeight +  topicsBarHeight + headerPadding + 8)
         .scrollIndicators(.hidden)
     }
     

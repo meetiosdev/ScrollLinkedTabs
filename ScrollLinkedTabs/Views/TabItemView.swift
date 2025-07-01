@@ -18,6 +18,7 @@ struct TabItemView: View {
     let isActive: Bool
     let activeHighlightColor: Color
     let animationNamespace: Namespace.ID
+    let height: CGFloat
     let onSelect: () -> Void
 
     // MARK: - Initializer
@@ -27,12 +28,14 @@ struct TabItemView: View {
         isActive: Bool,
         activeHighlightColor: Color = .purple,
         animationNamespace: Namespace.ID,
+        height: CGFloat = 28,
         onSelect: @escaping () -> Void
     ) {
         self.topic = topic
         self.isActive = isActive
         self.activeHighlightColor = activeHighlightColor
         self.animationNamespace = animationNamespace
+        self.height = height
         self.onSelect = onSelect
     }
 
@@ -44,7 +47,7 @@ struct TabItemView: View {
             topicNameText
             Spacer()
         }
-        .frame(height: 24)
+        .frame(height: height)
         .overlay(alignment: .bottom) {
             activeUnderline
         }

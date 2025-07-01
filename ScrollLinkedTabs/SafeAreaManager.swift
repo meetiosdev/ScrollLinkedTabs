@@ -1,10 +1,8 @@
 //
 //  SafeAreaManager.swift
-//  Melpot
-// Copyright © 2025 Suhub Armaa.
-// This file is part of the Melpot. It contains essential code and logic that contributes to the overall functionality of the application.
-//  Note: Unauthorized use, copying, or distribution of this code, in whole or in part, is strictly prohibited. This code is proprietary and should not be captured, stored, or used in any other application.
-// All Rights Reserved.
+//  ScrollLinkedTabs
+//
+//  Created by Swarajmeet Singh on 01/07/25.
 //
 
 
@@ -36,17 +34,6 @@ struct SafeAreaManager {
     }
 }
 
-// MARK: - NavigationBarManager
-/// Access the navigation bar height in the current view hierarchy.
-struct NavigationBarManager {
-    static var height: CGFloat {
-        UIApplication.shared.rootNavigationController?.navigationBar.frame.height ?? defaultHeight
-    }
-
-    private static var defaultHeight: CGFloat {
-        UINavigationController().navigationBar.frame.height
-    }
-}
 
 // MARK: - UIApplication Extensions
 extension UIApplication {
@@ -58,21 +45,4 @@ extension UIApplication {
             .first(where: { $0.isKeyWindow })?.safeAreaInsets
     }
 
-    /// Attempt to find the root tab bar controller from the key window.
-    var rootTabBarController: UITabBarController? {
-        return self.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .first?.windows
-            .first(where: { $0.isKeyWindow })?
-            .rootViewController as? UITabBarController
-    }
-    
-    /// Find the root navigation controller if it exists.
-    var rootNavigationController: UINavigationController? {
-        connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .first?.windows
-            .first(where: \.isKeyWindow)?
-            .rootViewController as? UINavigationController
-    }
 }

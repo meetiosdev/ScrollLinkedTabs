@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/// Displays content for selected Topiccommunity
+/// Displays content for selected Topic
 struct FeedContentView: View {
     @State private var viewModel: HomeViewModel
     init(viewModel: HomeViewModel) {
@@ -22,6 +22,7 @@ struct FeedContentView: View {
                     .tag(index)
             }
         }
+        .ignoresSafeArea()
         .tabViewStyle(.page(indexDisplayMode: .never))
         .onChange(of: viewModel.selectedTabIndex) { _, newValue in
             if newValue < viewModel.topics.count {
@@ -30,5 +31,4 @@ struct FeedContentView: View {
             }
         }
     }
-    
 }

@@ -37,7 +37,8 @@ struct TabsBarView: View {
                             TabItemView(
                                 topic: topic,
                                 isActive: viewModel.isTopicSelected(topic),
-                                animationNamespace: animation
+                                animationNamespace: animation,
+                                height: viewModel.topicsBarHeight
                             ) {
                                 viewModel.selectTopic(topic)
                             }

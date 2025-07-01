@@ -20,13 +20,26 @@ struct HomeView: View {
     }
     
     var body: some View {
+        TabView {
+            //NavigationStack {
+                contentView
+           // }
+            .tabItem {
+                Label("Feed", systemImage: "newspaper")
+            }
+        }
+        
+    }
+    
+    @ViewBuilder
+    private var contentView: some View {
         FeedContentView(viewModel: viewModel)
             .overlay(alignment: .top) {
                 headerMaterialBackground
-                    .frame(height: 96)
+                    .frame(height: viewModel.headerHeight)
                     .overlay(alignment: .bottom) {
                         TabsBarView(viewModel: viewModel)
-                            .frame(height: 24)
+                            .frame(height: viewModel.topicsBarHeight)
                     }
                     .ignoresSafeArea(edges: .top)
             }

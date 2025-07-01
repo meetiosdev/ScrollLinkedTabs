@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F61B5C92E13B19C00539FD1 /* SafeAreaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61B5C82E13B19C00539FD1 /* SafeAreaManager.swift */; };
 		0FFB0DAC2E0D782C0071973F /* ScrollLinkedTabsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB0DA92E0D782C0071973F /* ScrollLinkedTabsApp.swift */; };
 		0FFB0DAD2E0D782C0071973F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FFB0DA52E0D782C0071973F /* Preview Assets.xcassets */; };
 		0FFB0DAE2E0D782C0071973F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FFB0DA72E0D782C0071973F /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		0F0380D32E0E7F1600E950D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0F61B5C82E13B19C00539FD1 /* SafeAreaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaManager.swift; sourceTree = "<group>"; };
 		0FFB0D942E0D78240071973F /* ScrollLinkedTabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollLinkedTabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FFB0DA52E0D782C0071973F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0FFB0DA72E0D782C0071973F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				0FFB0DA62E0D782C0071973F /* Preview Content */,
 				0FFB0DA72E0D782C0071973F /* Assets.xcassets */,
 				0FFB0DA92E0D782C0071973F /* ScrollLinkedTabsApp.swift */,
+				0F61B5C82E13B19C00539FD1 /* SafeAreaManager.swift */,
 				0FFB0DAF2E0D7CDE0071973F /* Models */,
 				0FFB0DC12E0E64FA0071973F /* Views */,
 				0FFB0DBF2E0E64F20071973F /* ViewModel */,
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F61B5C92E13B19C00539FD1 /* SafeAreaManager.swift in Sources */,
 				0FFB0DC32E0E65D70071973F /* TabItemView.swift in Sources */,
 				0FFB0DB12E0D7DCD0071973F /* Post.swift in Sources */,
 				0FFB0DB72E0D7F360071973F /* FeedServiceProtocol.swift in Sources */,
