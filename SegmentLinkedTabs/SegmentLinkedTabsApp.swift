@@ -1,6 +1,6 @@
 //
-//  ScrollLinkedTabsApp.swift
-//  ScrollLinkedTabs
+//  SegmentLinkedTabsApp.swift
+//  SegmentLinkedTabs
 //
 //  Created by Swarajmeet Singh on 26/06/25.
 //
@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct ScrollLinkedTabsApp: App {
+struct SegmentLinkedTabsApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView(viewModel: HomeViewModel())

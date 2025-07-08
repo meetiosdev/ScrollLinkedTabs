@@ -1,6 +1,6 @@
 //
 //  SafeAreaManager.swift
-//  ScrollLinkedTabs
+//  SegmentLinkedTabs
 //
 //  Created by Swarajmeet Singh on 01/07/25.
 //

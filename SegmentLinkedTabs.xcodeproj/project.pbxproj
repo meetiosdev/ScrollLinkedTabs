@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0F61B5C92E13B19C00539FD1 /* SafeAreaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F61B5C82E13B19C00539FD1 /* SafeAreaManager.swift */; };
-		0FFB0DAC2E0D782C0071973F /* ScrollLinkedTabsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB0DA92E0D782C0071973F /* ScrollLinkedTabsApp.swift */; };
+		0FFB0DAC2E0D782C0071973F /* SegmentLinkedTabsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB0DA92E0D782C0071973F /* SegmentLinkedTabsApp.swift */; };
 		0FFB0DAD2E0D782C0071973F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FFB0DA52E0D782C0071973F /* Preview Assets.xcassets */; };
 		0FFB0DAE2E0D782C0071973F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FFB0DA72E0D782C0071973F /* Assets.xcassets */; };
 		0FFB0DB12E0D7DCD0071973F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB0DB02E0D7DCD0071973F /* Post.swift */; };
@@ -39,10 +39,10 @@
 /* Begin PBXFileReference section */
 		0F0380D32E0E7F1600E950D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0F61B5C82E13B19C00539FD1 /* SafeAreaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaManager.swift; sourceTree = "<group>"; };
-		0FFB0D942E0D78240071973F /* ScrollLinkedTabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollLinkedTabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FFB0D942E0D78240071973F /* SegmentLinkedTabs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SegmentLinkedTabs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FFB0DA52E0D782C0071973F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0FFB0DA72E0D782C0071973F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0FFB0DA92E0D782C0071973F /* ScrollLinkedTabsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollLinkedTabsApp.swift; sourceTree = "<group>"; };
+		0FFB0DA92E0D782C0071973F /* SegmentLinkedTabsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentLinkedTabsApp.swift; sourceTree = "<group>"; };
 		0FFB0DB02E0D7DCD0071973F /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		0FFB0DB22E0D7DE50071973F /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		0FFB0DB42E0D7DFD0071973F /* FeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponse.swift; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 		0FFB0D8B2E0D78240071973F = {
 			isa = PBXGroup;
 			children = (
-				0FFB0DAA2E0D782C0071973F /* ScrollLinkedTabs */,
+				0FFB0DAA2E0D782C0071973F /* SegmentLinkedTabs */,
 				0FFB0D952E0D78240071973F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,7 +90,7 @@
 		0FFB0D952E0D78240071973F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0FFB0D942E0D78240071973F /* ScrollLinkedTabs.app */,
+				0FFB0D942E0D78240071973F /* SegmentLinkedTabs.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,13 +103,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		0FFB0DAA2E0D782C0071973F /* ScrollLinkedTabs */ = {
+		0FFB0DAA2E0D782C0071973F /* SegmentLinkedTabs */ = {
 			isa = PBXGroup;
 			children = (
 				0F0380D32E0E7F1600E950D5 /* Info.plist */,
 				0FFB0DA62E0D782C0071973F /* Preview Content */,
 				0FFB0DA72E0D782C0071973F /* Assets.xcassets */,
-				0FFB0DA92E0D782C0071973F /* ScrollLinkedTabsApp.swift */,
+				0FFB0DA92E0D782C0071973F /* SegmentLinkedTabsApp.swift */,
 				0F61B5C82E13B19C00539FD1 /* SafeAreaManager.swift */,
 				0FFB0DAF2E0D7CDE0071973F /* Models */,
 				0FFB0DC12E0E64FA0071973F /* Views */,
@@ -118,7 +118,7 @@
 				0FFB0DCC2E0E69DF0071973F /* Extensions */,
 				0FFB0DCE2E0E69F20071973F /* Resources */,
 			);
-			path = ScrollLinkedTabs;
+			path = SegmentLinkedTabs;
 			sourceTree = "<group>";
 		};
 		0FFB0DAF2E0D7CDE0071973F /* Models */ = {
@@ -197,9 +197,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0FFB0D932E0D78240071973F /* ScrollLinkedTabs */ = {
+		0FFB0D932E0D78240071973F /* SegmentLinkedTabs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0FFB0DA22E0D78250071973F /* Build configuration list for PBXNativeTarget "ScrollLinkedTabs" */;
+			buildConfigurationList = 0FFB0DA22E0D78250071973F /* Build configuration list for PBXNativeTarget "SegmentLinkedTabs" */;
 			buildPhases = (
 				0FFB0D902E0D78240071973F /* Sources */,
 				0FFB0D912E0D78240071973F /* Frameworks */,
@@ -209,11 +209,11 @@
 			);
 			dependencies = (
 			);
-			name = ScrollLinkedTabs;
+			name = SegmentLinkedTabs;
 			packageProductDependencies = (
 			);
-			productName = ScrollLinkedTabs;
-			productReference = 0FFB0D942E0D78240071973F /* ScrollLinkedTabs.app */;
+			productName = SegmentLinkedTabs;
+			productReference = 0FFB0D942E0D78240071973F /* SegmentLinkedTabs.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -231,7 +231,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0FFB0D8F2E0D78240071973F /* Build configuration list for PBXProject "ScrollLinkedTabs" */;
+			buildConfigurationList = 0FFB0D8F2E0D78240071973F /* Build configuration list for PBXProject "SegmentLinkedTabs" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -245,7 +245,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0FFB0D932E0D78240071973F /* ScrollLinkedTabs */,
+				0FFB0D932E0D78240071973F /* SegmentLinkedTabs */,
 			);
 		};
 /* End PBXProject section */
@@ -289,7 +289,7 @@
 				0FFB0DC72E0E68DB0071973F /* PostView.swift in Sources */,
 				0FFB0DD22E0E6D990071973F /* FeedContentView.swift in Sources */,
 				0FFB0DB32E0D7DE50071973F /* Topic.swift in Sources */,
-				0FFB0DAC2E0D782C0071973F /* ScrollLinkedTabsApp.swift in Sources */,
+				0FFB0DAC2E0D782C0071973F /* SegmentLinkedTabsApp.swift in Sources */,
 				0FFB0DD02E0E6B270071973F /* PostsFeedView.swift in Sources */,
 				0FFB0DB52E0D7DFD0071973F /* FeedResponse.swift in Sources */,
 			);
@@ -424,11 +424,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ScrollLinkedTabs/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SegmentLinkedTabs/Preview Content\"";
 				DEVELOPMENT_TEAM = X3YKR6M53J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ScrollLinkedTabs/Info.plist;
+				INFOPLIST_FILE = SegmentLinkedTabs/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -438,7 +438,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.demo.ScrollLinkedTabs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.demo.SegmentLinkedTabs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -453,11 +453,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ScrollLinkedTabs/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SegmentLinkedTabs/Preview Content\"";
 				DEVELOPMENT_TEAM = X3YKR6M53J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ScrollLinkedTabs/Info.plist;
+				INFOPLIST_FILE = SegmentLinkedTabs/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -467,7 +467,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.demo.ScrollLinkedTabs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.demo.SegmentLinkedTabs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -478,7 +478,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0FFB0D8F2E0D78240071973F /* Build configuration list for PBXProject "ScrollLinkedTabs" */ = {
+		0FFB0D8F2E0D78240071973F /* Build configuration list for PBXProject "SegmentLinkedTabs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0FFB0DA02E0D78250071973F /* Debug */,
@@ -487,7 +487,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0FFB0DA22E0D78250071973F /* Build configuration list for PBXNativeTarget "ScrollLinkedTabs" */ = {
+		0FFB0DA22E0D78250071973F /* Build configuration list for PBXNativeTarget "SegmentLinkedTabs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0FFB0DA32E0D78250071973F /* Debug */,

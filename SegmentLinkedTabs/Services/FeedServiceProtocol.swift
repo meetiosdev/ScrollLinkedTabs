@@ -1,6 +1,6 @@
 //
 //  FeedServiceProtocol.swift
-//  ScrollLinkedTabs
+//  SegmentLinkedTabs
 //
 //  Created by Swarajmeet Singh on 26/06/25.
 //
