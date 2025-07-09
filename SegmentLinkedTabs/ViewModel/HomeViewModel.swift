@@ -15,6 +15,7 @@ final class HomeViewModel {
     // MARK: - Dependencies
 
     private let feedService: FeedServiceProtocol
+    private let communityService: CommunityProtocol
 
     // MARK: - Feed State
 
@@ -33,8 +34,12 @@ final class HomeViewModel {
 
     // MARK: - Init
 
-    init(feedService: FeedServiceProtocol = FeedService()) {
+    init(
+        feedService: FeedServiceProtocol = FeedService(),
+        communityService: CommunityProtocol = CommunityService()
+    ) {
         self.feedService = feedService
+        self.communityService = communityService
         headerHeight = SafeAreaManager.top + navigationBarHeight + topicsBarHeight + headerPadding
     }
 
@@ -53,9 +58,11 @@ final class HomeViewModel {
         defer { isLoading = false }
 
         do {
-            let response = try await feedService.fetchLocalFeed(page: currentPage + 1)
-            topics.append(contentsOf: response.records)
-            currentPage = response.pageNumber
+//            let response = try await feedService.fetchLocalFeed(page: currentPage + 1)
+//            topics.append(contentsOf: response.records)
+            let response = try await communityService.fetchCommunities(page: currentPage + 1)
+            topics.append(contentsOf: response.communities)
+            currentPage = response.page
 
             // Auto-select first topic if none selected
             if selectedTopic == nil, let first = topics.first {

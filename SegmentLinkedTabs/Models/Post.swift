@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post: Identifiable, Decodable, Hashable {
+struct Post: Identifiable, Codable, Hashable {
     let id: String
     let name: String
     let likes: Int

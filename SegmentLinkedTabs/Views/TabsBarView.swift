@@ -31,8 +31,8 @@ struct TabsBarView: View {
                     // FIXME: Using HStack to ensure stable view identities for smooth matchedGeometryEffect animations.
                     // LazyHStack is ideal for performance with large datasets but can break animations due to view reuse.
                     // See commented-out LazyHStack below for a fix that prevents animation issues while keeping performance benefits.
-                    //LazyHStack(spacing: 24) {
-                    HStack(spacing: 24) {
+                    LazyHStack(spacing: 24) {
+                    //HStack(spacing: 24) {
                         ForEach(viewModel.topics, id: \ .id) { topic in
                             TabItemView(
                                 topic: topic,

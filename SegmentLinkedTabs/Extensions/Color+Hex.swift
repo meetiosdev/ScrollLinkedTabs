@@ -9,8 +9,12 @@
 import SwiftUI
 
 extension Color {
-    init(hex: String) {
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+    init(hex: String?) {
+        guard let hex = hex?.trimmingCharacters(in: CharacterSet.alphanumerics.inverted), !hex.isEmpty else {
+            // Return white color for nil or empty input
+            self.init(.sRGB, red: 1, green: 1, blue: 1, opacity: 1)
+            return
+        }
         var int: UInt64 = 0
         Scanner(string: hex).scanHexInt64(&int)
         let a, r, g, b: UInt64

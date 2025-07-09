@@ -6,9 +6,10 @@
 //
 
 
-struct Topic: Identifiable, Decodable, Hashable {
+struct Topic: Identifiable, Codable, Hashable {
     let id: Int
     let name: String
-    let color: String
+    let color: String?
     let posts: [Post]?
 }
+
