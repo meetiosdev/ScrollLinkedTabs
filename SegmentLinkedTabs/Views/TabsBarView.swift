@@ -43,7 +43,9 @@ struct TabsBarView: View {
                                 viewModel.selectTopic(topic)
                             }
                             .id(topic.id)
-                           // .environment(\.self, UUID())
+                            .onAppear {
+                                    handlePagination(for: topic)
+                                }
                         }
                     }
                 }
@@ -70,6 +72,14 @@ struct TabsBarView: View {
             }
         }
     }
+    private func handlePagination(for topic: Topic) {
+        if viewModel.shouldLoadMore(for: topic) {
+            Task {
+                await viewModel.loadMoreTopics()
+            }
+        }
+    }
+
 }
 
 #Preview {

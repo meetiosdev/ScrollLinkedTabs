@@ -14,8 +14,7 @@ final class HomeViewModel {
 
     // MARK: - Dependencies
 
-    private let feedService: FeedServiceProtocol
-    private let communityService: CommunityProtocol
+    private let topicsService: TopicsProtocol
 
     // MARK: - Feed State
 
@@ -24,6 +23,9 @@ final class HomeViewModel {
     private(set) var isLoading: Bool = false
     private var currentPage: Int = 0
     var selectedTabIndex: Int = 0
+    private var totalCount: Int = 0
+    private let pageSize: Int = 5
+
 
     // MARK: - UI State
 
@@ -34,12 +36,8 @@ final class HomeViewModel {
 
     // MARK: - Init
 
-    init(
-        feedService: FeedServiceProtocol = FeedService(),
-        communityService: CommunityProtocol = CommunityService()
-    ) {
-        self.feedService = feedService
-        self.communityService = communityService
+    init(topicsService: TopicsProtocol = TopicsService()) {
+        self.topicsService = topicsService
         headerHeight = SafeAreaManager.top + navigationBarHeight + topicsBarHeight + headerPadding
     }
 
@@ -58,13 +56,15 @@ final class HomeViewModel {
         defer { isLoading = false }
 
         do {
-//            let response = try await feedService.fetchLocalFeed(page: currentPage + 1)
-//            topics.append(contentsOf: response.records)
-            let response = try await communityService.fetchCommunities(page: currentPage + 1)
-            topics.append(contentsOf: response.communities)
-            currentPage = response.page
-
-            // Auto-select first topic if none selected
+            let response = try await topicsService.fetchTopics(page: currentPage + 1, limit: pageSize)
+            let uniqueNew = response.topics.filter { new in
+                !topics.contains { $0.id == new.id }
+            }
+            
+            topics.append(contentsOf: uniqueNew)
+            currentPage = response.pagination.currentPage
+            totalCount = response.pagination.totalTopics
+            
             if selectedTopic == nil, let first = topics.first {
                 selectTopic(first)
             }
@@ -73,6 +73,12 @@ final class HomeViewModel {
             print("❌ [HomeViewModel] Failed to load feed data: \(error.localizedDescription)")
         }
     }
+    
+    func shouldLoadMore(for topic: Topic) -> Bool {
+        guard let index = topics.firstIndex(where: { $0.id == topic.id }) else { return false }
+        return index >= topics.count - 2 && topics.count < totalCount
+    }
+
 
     // MARK: - Topic Selection
 

@@ -18,7 +18,8 @@ struct FeedContentView: View {
     var body: some View {
         TabView(selection: $viewModel.selectedTabIndex) {
             ForEach(Array(viewModel.topics.enumerated()), id: \.element.id) { index, topic in
-                PostsFeedView(topic: topic)
+                let postViewModel = PostsViewModel(topic: topic)
+                PostsFeedView(viewModel: postViewModel)
                     .tag(index)
             }
         }

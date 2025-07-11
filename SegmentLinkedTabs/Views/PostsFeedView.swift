@@ -18,10 +18,11 @@ struct PostsFeedView: View {
     
     // MARK: - Input
     
-    let topic : Topic
+    @State private var viewModel: PostsViewModel
     
-    init(topic: Topic) {
-        self.topic = topic
+    // MARK: - Init
+    init(viewModel: PostsViewModel) {
+        self.viewModel = viewModel
     }
     
     /// Placeholder generation bounds.
@@ -32,15 +33,19 @@ struct PostsFeedView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 16) {
-                if let posts = topic.posts {
-                    renderPostList(posts)
-                } else {
+                if viewModel.posts.isEmpty {
                     renderPlaceholderGrid()
+                } else {
+                    renderPostList(viewModel.posts)
                 }
+              
             }
         }
         .contentMargins(.vertical, navigationBarHeight +  topicsBarHeight + headerPadding + 8)
         .scrollIndicators(.hidden)
+        .task {
+            await viewModel.fetchPosts()
+        }
     }
     
     // MARK: - Subviews
@@ -52,12 +57,12 @@ struct PostsFeedView: View {
         ForEach(posts) { post in
             PostView(
                 post: post,
-                backGroundColor: Color(hex: topic.color)
+                backGroundColor: Color(hex: viewModel.topic.color)
             )
         }
     }
     
-    /// Renders a gradient-styled placeholder grid for loading state or demo.
+    // Renders a gradient-styled placeholder grid for loading state or demo.
     @ViewBuilder
     private func renderPlaceholderGrid() -> some View {
         ForEach(placeholderRange, id: \.self) { index in
@@ -65,11 +70,11 @@ struct PostsFeedView: View {
             let borderOpacity = 1.0 - fillOpacity
             
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(hex: topic.color).opacity(fillOpacity))
+                .fill(Color(hex: viewModel.topic.color).opacity(fillOpacity))
                 .frame(height: 84)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color(hex: topic.color).opacity(borderOpacity), lineWidth: 1)
+                        .stroke(Color(hex: viewModel.topic.color).opacity(borderOpacity), lineWidth: 1)
                 )
                 .overlay {
                     Text(String(format: "%.2f", fillOpacity))

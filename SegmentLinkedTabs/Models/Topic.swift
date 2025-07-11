@@ -7,9 +7,8 @@
 
 
 struct Topic: Identifiable, Codable, Hashable {
-    let id: Int
+    let id: String
     let name: String
-    let color: String?
-    let posts: [Post]?
+    let color: String
 }
 

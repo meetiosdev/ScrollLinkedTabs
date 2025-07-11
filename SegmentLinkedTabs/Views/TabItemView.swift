@@ -90,10 +90,10 @@ struct TabItemView: View {
 
 #Preview {
     struct TabItemViewPreview: View {
-        @State private var selectedTopicID: Int = 0
+        @State private var selectedTopicID: String = "0"
         @Namespace private var animation
 
-        private let topic = Topic(id: 0, name: "gaming", color: "#4A7B9D", posts: [])
+        private let topic = Topic(id: "0", name: "gaming", color: "#4A7B9D")
 
         var body: some View {
             TabItemView(
