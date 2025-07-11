@@ -66,22 +66,11 @@ struct PostsFeedView: View {
     @ViewBuilder
     private func renderPlaceholderGrid() -> some View {
         ForEach(placeholderRange, id: \.self) { index in
-            let fillOpacity = 1.0 - Double(index - placeholderRange.lowerBound) / Double(placeholderRange.count - 1)
-            let borderOpacity = 1.0 - fillOpacity
-            
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(hex: viewModel.topic.color).opacity(fillOpacity))
+            LoadingShimmerView(baseColor: Color(hex: viewModel.topic.color))
                 .frame(height: 84)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color(hex: viewModel.topic.color).opacity(borderOpacity), lineWidth: 1)
-                )
-                .overlay {
-                    Text(String(format: "%.2f", fillOpacity))
-                        .foregroundColor(.primary)
-                        .font(.caption)
-                }
+                .clipShape(.rect(cornerRadius: 8))
                 .padding(.horizontal, 16)
+                
         }
     }
 }

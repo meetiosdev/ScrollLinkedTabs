@@ -13,14 +13,16 @@ import Foundation
 /// Service responsible for fetching topics and posts from the API
 
 final class TopicsService: TopicsProtocol {
-    private let baseURL = "http://localhost:3000" //"https://topics-api.onrender.com"//
+    private let baseURL =  "http://localhost:3000" // "https://topics-api.onrender.com"//
     private let session: URLSession
-    
+    private let loadingDelay: UInt64 = 3 * 1_000_000_000  // 3 seconds
+
     init(session: URLSession = .shared) {
         self.session = session
     }
     
     func fetchTopics(page: Int, limit: Int) async throws -> TopicsResponse {
+        try await Task.sleep(nanoseconds: loadingDelay)
         let url = URL(string: "\(baseURL)/api/topics?page=\(page)&limit=\(limit)")!
         
         let (data, response) = try await session.data(from: url)
@@ -43,6 +45,7 @@ final class TopicsService: TopicsProtocol {
     }
     
     func fetchPosts(for topicId: String) async throws -> [Post] {
+        try await Task.sleep(nanoseconds: loadingDelay)
         let url = URL(string: "\(baseURL)/api/topics/\(topicId)/posts")!
         
         let (data, response) = try await session.data(from: url)

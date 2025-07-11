@@ -65,7 +65,7 @@ struct TabsBarView: View {
     private func loadingShimmer(count: Int) -> some View {
         LazyHStack(spacing: 24) {
             ForEach(0..<count, id: \.self) { index in
-                Color.gray
+                LoadingShimmerView()
                     .frame(width: CGFloat.random(in: 80...120), height: 20)
                     .clipShape(.rect(cornerRadius: 4))
                     .offset(y: -3)
