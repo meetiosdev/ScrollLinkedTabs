@@ -33,22 +33,23 @@ final class APILogger {
         headers: [String: String]?,
         body: Data? = nil
     ) -> String {
-        let requestId = UUID().uuidString.prefix(8)
+        let requestId = UUID().uuidString.uppercased()
         
-        guard isLogEnabled else { return String(requestId) }
+        guard isLogEnabled else { return requestId }
         
-        let logMessage = """
-        🌐 API REQUEST [\(requestId)]
-        📍 URL: \(url)
-        🔄 Method: \(method)
-        📋 Headers: \(headers?.prettyPrintedJSONString ?? "{}")
-        📦 Body: \(body?.jsonString ?? "nil")
-        """
+        let timestamp = DateFormatter.logTimestamp.string(from: Date())
+        let summary = "\(timestamp) ⚪️ Request started\n"
+        let details = formatKeyValue([
+            ("id", requestId),
+            ("method", method),
+            ("url", url),
+            ("headers", headers?.prettyHeadersString ?? "{}"),
+            ("body", body?.json ?? "nil")
+        ])
+        print("\(summary)\n\(details)")
+        logger.info("Request started: \(requestId)")
         
-        logger.info("\(logMessage)")
-        printConsoleOutput(logMessage, type: .request)
-        
-        return String(requestId)
+        return requestId
     }
     
     // MARK: - Response Logging
@@ -67,17 +68,16 @@ final class APILogger {
     ) {
         guard isLogEnabled else { return }
         
-        let status = statusCode.map { "(\($0))" } ?? ""
-        let timeString = responseTime.map { String(format: "%.2fs", $0) } ?? ""
-        let responseString = data?.jsonString ?? "nil"
-        
-        let logMessage = """
-        ✅ API RESPONSE [\(requestId)] \(status) \(timeString)
-        📥 Response Data: \(responseString)
-        """
-        
-        logger.info("\(logMessage)")
-        printConsoleOutput(logMessage, type: .response)
+        let timestamp = DateFormatter.logTimestamp.string(from: Date())
+        let summary = "\(timestamp) 🟢 Request succeeded\n"
+        let details = formatKeyValue([
+            ("id", requestId),
+            ("status", statusCode.map { String($0) } ?? "nil"),
+            ("responseTime", responseTime.map { String(format: "%.2fs", $0) } ?? "nil"),
+            ("body", data?.json ?? "nil")
+        ])
+        print("\(summary)\n\(details)")
+        logger.info("Request succeeded: \(requestId)")
     }
     
     // MARK: - Error Logging
@@ -107,26 +107,16 @@ final class APILogger {
             )
         }
         
-        let status = statusCode.map { "(\($0))" } ?? ""
-        let timeString = responseTime.map { String(format: "%.2fs", $0) } ?? ""
-        let responseString = data?.jsonString ?? "nil"
-        
-        // Try to extract API error message from response
-        var errorDescription = error.localizedDescription
-        if let data = data {
-            if let apiError = try? JSONDecoder().decode(APIErrorResponse.self, from: data) {
-                errorDescription = apiError.message
-            }
-        }
-        
-        let logMessage = """
-        ❌ API ERROR [\(requestId)] \(status) \(timeString)
-        📥 Response Data: \(responseString)
-        💥 Error: \(errorDescription)
-        """
-        
-        logger.error("\(logMessage)")
-        printConsoleOutput(logMessage, type: .error)
+        let timestamp = DateFormatter.logTimestamp.string(from: Date())
+        let summary = "\(timestamp) 🔴 Request failed\n"
+        let errorDescription = error.localizedDescription
+        let details = formatKeyValue([
+            ("id", requestId),
+            ("error", errorDescription),
+            ("requestResult", "failed")
+        ])
+        print("\(summary)\n\(details)")
+        logger.error("Request failed: \(requestId) - \(errorDescription)")
         
         return NSError(
             domain: "APILoggerErrorDomain",
@@ -134,38 +124,30 @@ final class APILogger {
             userInfo: [NSLocalizedDescriptionKey: errorDescription]
         )
     }
+    
+    // MARK: - Formatting Helpers
+    private static func formatKeyValue(_ pairs: [(String, String)]) -> String {
+        let maxKeyLength = pairs.map { $0.0.count }.max() ?? 0
+        return pairs.map { key, value in
+            let paddedKey = key.padding(toLength: maxKeyLength, withPad: " ", startingAt: 0)
+            if key == "headers" && value.contains("\n") {
+                // Indent multiline headers
+                let indented = value.split(separator: "\n").map { "           \($0)" }.joined(separator: "\n")
+                return "  \(paddedKey): \n\(indented)"
+            }
+            if key == "body" && value != "nil" && value.contains("\n") {
+                let indented = value.split(separator: "\n").map { "           \($0)" }.joined(separator: "\n")
+                return "  \(paddedKey): \n\(indented)"
+            }
+            return "  \(paddedKey): \(value)"
+        }.joined(separator: "\n") + "\n"
+    }
 }
 
 // MARK: - Supporting Types
 
 private extension APILogger {
-    
-    enum LogType {
-        case request, response, error
-        
-        var emoji: String {
-            switch self {
-            case .request: return "🌐"
-            case .response: return "✅"
-            case .error: return "❌"
-            }
-        }
-        
-        var color: String {
-            switch self {
-            case .request: return "\u{001B}[34m" // Blue
-            case .response: return "\u{001B}[32m" // Green
-            case .error: return "\u{001B}[31m" // Red
-            }
-        }
-    }
-    
-    static func printConsoleOutput(_ message: String, type: LogType) {
-        let resetColor = "\u{001B}[0m"
-        let timestamp = DateFormatter.logTimestamp.string(from: Date())
-        let output = "\(type.color)\(timestamp) \(type.emoji) \(message)\(resetColor)"
-        print(output)
-    }
+    // Removed unused LogType enum and printConsoleOutput method
 }
 
 // MARK: - API Error Response
@@ -177,31 +159,17 @@ private struct APIErrorResponse: Codable {
 
 // MARK: - Extensions
 
+private extension Dictionary where Key == String, Value == String {
+    var prettyHeadersString: String {
+        self.map { "\($0): \($1)" }.joined(separator: "\n           ")
+    }
+}
+
+
 private extension DateFormatter {
     static let logTimestamp: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss.SSS"
+        formatter.dateFormat = "HH:mm:ss"
         return formatter
     }()
-}
-
-private extension Dictionary where Key == String, Value == String {
-    var prettyPrintedJSONString: String {
-        guard let data = try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted),
-              let string = String(data: data, encoding: .utf8) else {
-            return "{}"
-        }
-        return string
-    }
-}
-
-private extension Data {
-    var jsonString: String {
-        guard let json = try? JSONSerialization.jsonObject(with: self, options: []),
-              let data = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted),
-              let string = String(data: data, encoding: .utf8) else {
-            return String(data: self, encoding: .utf8) ?? "Unable to decode data"
-        }
-        return string
-    }
 } 
