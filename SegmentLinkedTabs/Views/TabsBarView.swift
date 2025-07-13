@@ -10,18 +10,18 @@
 import SwiftUI
 
 struct TabsBarView: View {
-
+    
     // MARK: - State & Dependencies
-
-    @State private var viewModel: HomeViewModel
+    
+    let viewModel: HomeViewModel
     @Namespace private var animation
-
+    
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
     }
     
     // MARK: - Body
-
+    
     var body: some View {
         ScrollViewReader { scrollProxy in
             ScrollView(.horizontal, showsIndicators: false) {
@@ -32,7 +32,7 @@ struct TabsBarView: View {
                     // LazyHStack is ideal for performance with large datasets but can break animations due to view reuse.
                     // See commented-out LazyHStack below for a fix that prevents animation issues while keeping performance benefits.
                     LazyHStack(spacing: 24) {
-                    //HStack(spacing: 24) {
+                        //HStack(spacing: 24) {
                         ForEach(viewModel.topics, id: \ .id) { topic in
                             TabItemView(
                                 topic: topic,
@@ -44,12 +44,16 @@ struct TabsBarView: View {
                             }
                             .id(topic.id)
                             .onAppear {
-                                    handlePagination(for: topic)
-                                }
+                                handlePagination(for: topic)
+                            }
+                        }
+                        
+                        if viewModel.isPaging {
+                            loadingShimmer(count: 3)
                         }
                     }
                 }
-               
+                
             }
             .contentMargins(.horizontal, 16)
             .onChange(of: viewModel.selectedTopic) { oldValue, topic in
@@ -60,7 +64,7 @@ struct TabsBarView: View {
             }
         }
     }
-
+    
     
     private func loadingShimmer(count: Int) -> some View {
         LazyHStack(spacing: 24) {
@@ -79,7 +83,7 @@ struct TabsBarView: View {
             }
         }
     }
-
+    
 }
 
 #Preview {

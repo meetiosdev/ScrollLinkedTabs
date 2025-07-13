@@ -12,7 +12,7 @@ import SwiftUI
 struct HomeView: View {
     
     // MARK: - Properties
-    @State private var viewModel: HomeViewModel
+    let viewModel: HomeViewModel
     
     // MARK: - Init
     init(viewModel: HomeViewModel) {

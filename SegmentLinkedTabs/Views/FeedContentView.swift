@@ -10,7 +10,7 @@ import SwiftUI
 
 /// Displays content for selected Topic
 struct FeedContentView: View {
-    @State private var viewModel: HomeViewModel
+    @Bindable var viewModel: HomeViewModel
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
     }

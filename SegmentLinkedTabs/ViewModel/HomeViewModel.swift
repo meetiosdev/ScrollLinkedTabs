@@ -21,6 +21,7 @@ final class HomeViewModel {
     private(set) var topics: [Topic] = []
     private(set) var selectedTopic: Topic?
     private(set) var isLoading: Bool = false
+    private(set) var isPaging: Bool = false
     private var currentPage: Int = 0
     var selectedTabIndex: Int = 0
     private var totalCount: Int = 0
@@ -55,9 +56,15 @@ final class HomeViewModel {
     }
 
     func loadMoreTopics() async {
-        guard !isLoading else { return }
+        let isFirstPage = currentPage == 0
+        guard !isLoading, isFirstPage || totalCount > topics.count else { return }
+        
         isLoading = true
-        defer { isLoading = false }
+        isPaging = !isFirstPage
+        defer { 
+            isLoading = false
+            isPaging = false
+        }
 
         do {
             let response = try await topicsService.fetchTopics(page: currentPage + 1, limit: pageSize)

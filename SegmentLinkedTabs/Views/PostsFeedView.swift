@@ -18,8 +18,8 @@ struct PostsFeedView: View {
     
     // MARK: - Input
     
-    @State private var viewModel: PostsViewModel
-    @State private var homeViewModel: HomeViewModel
+    let viewModel: PostsViewModel
+    let homeViewModel: HomeViewModel
     @State private var hasAppeared: Bool = false
     
     // MARK: - Init
