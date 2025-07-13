@@ -19,10 +19,13 @@ struct PostsFeedView: View {
     // MARK: - Input
     
     @State private var viewModel: PostsViewModel
+    @State private var homeViewModel: HomeViewModel
+    @State private var hasAppeared: Bool = false
     
     // MARK: - Init
-    init(viewModel: PostsViewModel) {
+    init(viewModel: PostsViewModel, homeViewModel: HomeViewModel) {
         self.viewModel = viewModel
+        self.homeViewModel = homeViewModel
     }
     
     /// Placeholder generation bounds.
@@ -43,8 +46,15 @@ struct PostsFeedView: View {
         }
         .contentMargins(.vertical, navigationBarHeight +  topicsBarHeight + headerPadding + 8)
         .scrollIndicators(.hidden)
-        .task {
-            await viewModel.fetchPosts()
+        .onAppear {
+            // Only fetch posts if this is the first time the view appears
+            if !hasAppeared {
+                hasAppeared = true
+                Task {
+                    await viewModel.fetchPosts()
+                    homeViewModel.markTopicAsLoaded(viewModel.topic)
+                }
+            }
         }
     }
     

@@ -18,8 +18,8 @@ struct FeedContentView: View {
     var body: some View {
         TabView(selection: $viewModel.selectedTabIndex) {
             ForEach(Array(viewModel.topics.enumerated()), id: \.element.id) { index, topic in
-                let postViewModel = PostsViewModel(topic: topic)
-                PostsFeedView(viewModel: postViewModel)
+                let postViewModel = viewModel.getPostsViewModel(for: topic)
+                PostsFeedView(viewModel: postViewModel, homeViewModel: viewModel)
                     .tag(index)
             }
         }
@@ -28,7 +28,7 @@ struct FeedContentView: View {
         .onChange(of: viewModel.selectedTabIndex) { _, newValue in
             if newValue < viewModel.topics.count {
                 let topic = viewModel.topics[newValue]
-                    viewModel.selectTopic(topic)
+                viewModel.selectTopic(topic)
             }
         }
     }

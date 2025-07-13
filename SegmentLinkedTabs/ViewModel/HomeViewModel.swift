@@ -26,6 +26,10 @@ final class HomeViewModel {
     private var totalCount: Int = 0
     private let pageSize: Int = 5
 
+    // MARK: - Posts Cache
+    
+    private var postsViewModels: [String: PostsViewModel] = [:]
+    private var loadedTopicIds: Set<String> = []
 
     // MARK: - UI State
 
@@ -79,6 +83,27 @@ final class HomeViewModel {
         return index >= topics.count - 2 && topics.count < totalCount
     }
 
+    // MARK: - Posts ViewModel Management
+    
+    func getPostsViewModel(for topic: Topic) -> PostsViewModel {
+        // Return cached PostsViewModel if it exists
+        if let cachedViewModel = postsViewModels[topic.id] {
+            return cachedViewModel
+        }
+        
+        // Create new PostsViewModel and cache it
+        let newViewModel = PostsViewModel(topic: topic, topicsService: topicsService)
+        postsViewModels[topic.id] = newViewModel
+        return newViewModel
+    }
+    
+    func isTopicLoaded(_ topic: Topic) -> Bool {
+        return loadedTopicIds.contains(topic.id)
+    }
+    
+    func markTopicAsLoaded(_ topic: Topic) {
+        loadedTopicIds.insert(topic.id)
+    }
 
     // MARK: - Topic Selection
 

@@ -12,9 +12,9 @@ import Foundation
 /// Service responsible for fetching topics and posts from the API
 
 final class TopicsService: TopicsProtocol {
-    private let baseURL =  "http://localhost:3000" // "https://topics-api.onrender.com"//
+    private let baseURL =  "https://topics-api.onrender.com"// "http://localhost:3000" //
     private let session: URLSession
-    private let loadingDelay: UInt64 = 3 * 1_000_000_000  // 3 seconds
+    private let loadingDelay: UInt64 = 0 * 1_000_000_000  // 3 seconds
 
     init(session: URLSession = .shared) {
         self.session = session

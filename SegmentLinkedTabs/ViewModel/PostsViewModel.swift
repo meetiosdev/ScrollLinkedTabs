@@ -22,8 +22,8 @@ final class PostsViewModel {
     // MARK: - Feed State
 
     private(set) var posts: [Post] = []
-  
     private(set) var isLoading: Bool = false
+    private(set) var hasLoadedPosts: Bool = false
    
     // MARK: - Init
 
@@ -36,15 +36,15 @@ final class PostsViewModel {
     }
     
     func fetchPosts() async {
-        guard !isLoading else { return }
+        // Skip if already loaded or currently loading
+        guard !hasLoadedPosts && !isLoading else { return }
+        
         isLoading = true
         defer { isLoading = false }
 
         do {
-            //let response = try await topicsService.fetchLocalFeed(page: currentPage + 1)
             posts = try await topicsService.fetchPosts(for: topic.id)
-        
-
+            hasLoadedPosts = true
         } catch {
             print("❌ [PostsViewModel] Failed to load feed data: \(error.localizedDescription)")
         }
